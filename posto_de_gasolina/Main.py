@@ -55,3 +55,50 @@ for abastecimento in abastecimentos:
 # TOTAL DO DIA
 # ==========================================
 total_dia = (total_etanol + total_gasolina + total_diesel)
+
+# ==========================================
+# ETAPA 1 E 2
+# ==========================================
+
+try:
+
+    with open("recibo_posto.txt", "w", encoding="utf-8") as arquivo:
+
+        arquivo.write("========== POSTO DE GASOLINA ==========\n")
+
+        # Laço de repetição sobre a lista de objetos
+        for abastecimento in abastecimentos:
+
+            arquivo.write(
+                f"{abastecimento.veiculo.modelo} - "
+                f"{abastecimento.veiculo.placa}\n"
+            )
+
+            arquivo.write(
+                f"Combustível: "
+                f"{abastecimento.combustivel.nome}\n"
+            )
+
+            arquivo.write(
+                f"Valor: R$ {abastecimento.valor:.2f}\n\n"
+            )
+
+        arquivo.write("========================================\n")
+
+        arquivo.write(
+            f"Etanol: R$ {total_etanol:.2f}\n"
+        )
+
+        arquivo.write(
+            f"Gasolina: R$ {total_gasolina:.2f}\n"
+        )
+
+        arquivo.write(
+            f"Diesel: R$ {total_diesel:.2f}\n"
+        )
+
+        arquivo.write(
+            f"TOTAL DO DIA: R$ {total_dia:.2f}\n"
+        )
+
+    print("\nRecibo gerado/atualizado com sucesso!")
